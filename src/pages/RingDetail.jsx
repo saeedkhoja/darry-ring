@@ -2,6 +2,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import RingCard from "../components/RingCard.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { getRing, RINGS, METAL_LABELS, GEM_LABELS, formatSom, ringImage } from "../data/rings.js";
+import { IconRing, IconInfo } from "../components/icons.jsx";
 
 export default function RingDetail() {
   const { id } = useParams();
@@ -70,15 +71,15 @@ export default function RingDetail() {
           </div>
 
           <button onClick={handleBuy} className="btn-primary mt-7 w-full py-3.5 text-base">
-            💍 Sotib olish
+            <IconRing className="h-5 w-5" /> Sotib olish
           </button>
           {!user && (
             <p className="mt-3 text-center text-sm text-ink-soft">
               Sotib olish uchun <strong className="text-ink">OneID</strong> orqali ro'yxatdan o'tasiz.
             </p>
           )}
-          <div className="mt-5 flex items-center gap-2 rounded-xl bg-rose-50/60 px-4 py-3 text-sm text-rose-700">
-            <span>⚠️</span>
+          <div className="mt-5 flex items-center gap-2.5 rounded-xl bg-rose-50/60 px-4 py-3 text-sm text-rose-700">
+            <IconInfo className="h-5 w-5 shrink-0" />
             <span>Yagona qoidasi: har bir foydalanuvchi umrida faqat <strong>bitta</strong> uzuk sotib oladi.</span>
           </div>
         </div>

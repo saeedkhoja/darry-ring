@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import Logo from "../components/Logo.jsx";
+import { IconId, IconSparkle, IconGift } from "../components/icons.jsx";
 
 export default function Login() {
   const { loginWithOneId } = useAuth();
@@ -34,8 +35,8 @@ export default function Login() {
   if (registered) {
     return (
       <div className="mx-auto flex max-w-md flex-col items-center px-5 py-20 text-center">
-        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-rose-50 text-4xl">
-          🎉
+        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+          <IconSparkle className="h-9 w-9" />
         </span>
         <span className="mt-6 chip bg-gold text-white">Tez kunda</span>
         <h1 className="mt-4 text-3xl text-ink sm:text-4xl">Siz ro'yxatdan o'tdingiz!</h1>
@@ -45,11 +46,11 @@ export default function Login() {
         </p>
 
         <div className="mt-8 w-full rounded-2xl border border-gold/40 bg-surface/70 p-6 text-left">
-          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-rose-600">
-            Erta kirish sovg'asi
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-rose-600">
+            <IconGift className="h-4 w-4" /> Erta kirish sovg'asi
           </p>
           <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-            🎁 Ishga tushganda birinchi xaridingizga maxsus taklif va shaxsiy maslahatchi.
+            Ishga tushganda birinchi xaridingizga maxsus taklif va shaxsiy maslahatchi.
           </p>
         </div>
 
@@ -79,8 +80,8 @@ export default function Login() {
           disabled={loading}
           className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#0a3d62] px-5 py-3.5 text-white transition-opacity hover:opacity-95 disabled:opacity-60"
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded bg-white text-xs font-bold text-[#0a3d62]">
-            ID
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white text-[#0a3d62]">
+            <IconId size={18} />
           </span>
           {loading ? "Yo'naltirilmoqda..." : "OneID bilan davom etish"}
         </button>

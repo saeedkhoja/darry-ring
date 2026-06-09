@@ -1,35 +1,43 @@
 import { Link } from "react-router-dom";
+import { IconId, IconRing, IconInfinity, IconSeal, IconArrowRight } from "./icons.jsx";
+
+const ICONS = { id: IconId, ring: IconRing, infinity: IconInfinity, seal: IconSeal };
 
 const STEPS = [
   {
     n: "01",
-    icon: "🪪",
+    icon: "id",
     title: "OneID bilan ro'yxatdan o'ting",
-    text: "Rasmiy OneID hisobingiz orqali tizimga kirasiz. Bir shaxs — bitta hisob. Bu sizning shaxsingizni tasdiqlaydi va platformani halol saqlaydi.",
+    text: "Rasmiy OneID orqali kirasiz. Bir shaxs — bitta hisob.",
     tone: "soft",
   },
   {
     n: "02",
-    icon: "💍",
+    icon: "ring",
     title: "Yagona uzukni tanlang",
-    text: "34 ta noyob model orasidan yuragingizga eng yaqinini tanlaysiz. Shoshilmang — bu tanlov umringizda bir marta bo'ladi.",
+    text: "34 ta noyob model orasidan yuragingizga yaqinini tanlang.",
     tone: "soft",
   },
   {
     n: "03",
-    icon: "♾️",
+    icon: "infinity",
     title: "Umrda bir marta sotib olasiz",
-    text: "Xaridingiz tasdiqlangan lahzadan boshlab hisobingiz abadiy «band» bo'ladi. Siz boshqa hech qachon — umringizning oxirigacha — ikkinchi uzuk sotib ololmaysiz. Aynan shu narsa sizning va'dangizni betakror qiladi.",
+    text: "Xariddan so'ng hisobingiz abadiy band bo'ladi — boshqa hech qachon. Aynan shu sizning va'dangizni betakror qiladi.",
     tone: "highlight",
   },
   {
     n: "04",
-    icon: "📜",
+    icon: "seal",
     title: "Uzukingizga passport beramiz",
-    text: "Yakunida biz sizning uzugingizga rasmiy raqamli passport — noyob platformId beramiz. Unda siz va yagonangizning ismi, sevgi izhoringiz va sana abadiy muhrlanadi.",
+    text: "Uzugingizga noyob platformId — siz va yagonangiz ismi abadiy muhrlanadi.",
     tone: "passport",
   },
 ];
+
+function StepIcon({ name, className }) {
+  const C = ICONS[name];
+  return C ? <C className={className} /> : null;
+}
 
 export default function HowItWorks() {
   return (
@@ -64,7 +72,8 @@ export default function HowItWorks() {
         {/* CTA */}
         <div className="mt-16 text-center">
           <Link to="/catalog" className="btn-primary px-8 py-3.5 text-base">
-            Sayohatni boshlash →
+            Sayohatni boshlash
+            <IconArrowRight className="h-4 w-4" />
           </Link>
           <p className="mt-3 text-sm text-ink-soft">OneID orqali — bir necha soniyada</p>
         </div>
@@ -108,15 +117,15 @@ function Card({ step, alignRight }) {
     return (
       <div className="rounded-2xl bg-gradient-to-br from-rose-700 to-onyx p-7 text-onaccent shadow-2xl shadow-rose-900/30">
         <div className={`mb-3 flex items-center gap-3 ${alignRight ? "md:flex-row-reverse" : ""}`}>
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-2xl">
-            {step.icon}
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-gold-soft">
+            <StepIcon name={step.icon} className="h-6 w-6" />
           </span>
           <span className="chip bg-gold text-ink">Eng muhim qadam</span>
         </div>
         <h3 className="text-2xl text-onaccent">{step.title}</h3>
         <p className="mt-2 leading-relaxed text-onaccent/85">{step.text}</p>
         <p className={`mt-4 text-sm font-semibold text-gold-soft ${alignRight ? "md:text-right" : ""}`}>
-          ⚠️ Boshqa hech qachon — bu chinakam yagona.
+          Boshqa hech qachon — bu chinakam yagona.
         </p>
       </div>
     );
@@ -126,7 +135,9 @@ function Card({ step, alignRight }) {
     return (
       <div className="overflow-hidden rounded-2xl border border-gold/40 bg-surface shadow-lg">
         <div className={`flex items-center gap-3 bg-gradient-to-r from-onyx to-rose-700 px-6 py-4 text-onaccent ${alignRight ? "md:flex-row-reverse md:text-right" : ""}`}>
-          <span className="text-2xl">{step.icon}</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15">
+            <StepIcon name={step.icon} className="h-5 w-5" />
+          </span>
           <div className={alignRight ? "md:ml-auto" : ""}>
             <p className="text-[0.6rem] uppercase tracking-[0.2em] opacity-80">Yagona · Sevgi passporti</p>
             <p className="font-semibold">YGN-2026-•••••</p>
@@ -144,11 +155,11 @@ function Card({ step, alignRight }) {
   return (
     <div className="card p-7">
       <span
-        className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 text-2xl ${
+        className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 text-rose-600 ${
           alignRight ? "md:ml-auto" : ""
         }`}
       >
-        {step.icon}
+        <StepIcon name={step.icon} className="h-6 w-6" />
       </span>
       <h3 className="text-2xl text-ink">{step.title}</h3>
       <p className="mt-2 leading-relaxed text-ink-soft">{step.text}</p>

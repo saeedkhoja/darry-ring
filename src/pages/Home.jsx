@@ -3,7 +3,13 @@ import RingCard from "../components/RingCard.jsx";
 import HowItWorks from "../components/HowItWorks.jsx";
 import RingShowcase from "../components/RingShowcase.jsx";
 import Reveal from "../components/Reveal.jsx";
+import {
+  IconStar, IconLock, IconTruck, IconInfinity, IconSeal,
+  IconShield, IconDiamond, IconPlus,
+} from "../components/icons.jsx";
 import { RINGS } from "../data/rings.js";
+
+const WHY_ICONS = { infinity: IconInfinity, seal: IconSeal, shield: IconShield, diamond: IconDiamond };
 
 export default function Home() {
   const featured = RINGS.filter((r) => r.bestseller).slice(0, 4);
@@ -12,43 +18,54 @@ export default function Home() {
     <div>
       {/* ===================== HERO ===================== */}
       <section className="aurora">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-20 pt-14 md:grid-cols-2 md:pb-28 md:pt-20">
-          <div>
+        <div className="mx-auto grid max-w-6xl items-center gap-x-10 gap-y-7 px-5 pb-16 pt-12 md:grid-cols-2 md:pb-28 md:pt-20">
+          {/* 1) Sarlavha + matn + tugmalar */}
+          <div className="md:col-start-1 md:row-start-1 md:self-end">
             <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-gold/40 bg-surface/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-rose-600 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               Umrda bir marta
             </span>
 
-            <h1 className="animate-fade-up mt-6 text-5xl leading-[1.05] text-ink sm:text-6xl md:text-7xl" style={{ animationDelay: "0.08s" }}>
+            <h1 className="animate-fade-up mt-5 text-5xl leading-[1.05] text-ink sm:text-6xl md:text-7xl" style={{ animationDelay: "0.08s" }}>
               Yagonangizga,
               <br />
               <span className="text-shimmer">faqat bir marta.</span>
             </h1>
 
-            <p className="animate-fade-up mt-6 max-w-sm text-lg leading-relaxed text-ink-soft" style={{ animationDelay: "0.16s" }}>
+            <p className="animate-fade-up mt-5 max-w-sm text-lg leading-relaxed text-ink-soft" style={{ animationDelay: "0.16s" }}>
               Bir umrda <strong className="text-ink">bitta</strong> uzuk. Bitta va'da. Yagonangizga.
             </p>
 
-            <div className="animate-fade-up mt-9 flex flex-wrap items-center gap-4" style={{ animationDelay: "0.24s" }}>
-              <Link to="/catalog" className="btn-primary px-8 py-3.5 text-base">
+            {/* Tugmalar — bir qatorda */}
+            <div className="animate-fade-up mt-7 flex items-center gap-3" style={{ animationDelay: "0.24s" }}>
+              <Link to="/catalog" className="btn-primary flex-1 justify-center whitespace-nowrap px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base">
                 Uzuklarni ko'rish
               </Link>
-              <Link to="/concept" className="btn-ink px-8 py-3.5 text-base">
+              <Link to="/concept" className="btn-ink flex-1 justify-center whitespace-nowrap px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base">
                 Falsafamiz
               </Link>
             </div>
-
-            <div className="animate-fade-up mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-ink-soft" style={{ animationDelay: "0.32s" }}>
-              <span className="flex items-center gap-1.5">
-                <span className="text-gold">★★★★★</span> 4.9 / 5 baho
-              </span>
-              <span className="flex items-center gap-1.5">🔒 OneID himoyasi</span>
-              <span className="flex items-center gap-1.5">🚚 Bepul yetkazib berish</span>
-            </div>
           </div>
 
-          <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          {/* 2) Aylanayotgan uzuk */}
+          <div className="animate-fade-up md:col-start-2 md:row-span-2 md:self-center" style={{ animationDelay: "0.2s" }}>
             <RingShowcase />
+          </div>
+
+          {/* 3) Baho · OneID himoyasi · Bepul yetkazib berish */}
+          <div className="animate-fade-up flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-soft md:col-start-1 md:row-start-2 md:self-start" style={{ animationDelay: "0.32s" }}>
+            <span className="flex items-center gap-1.5">
+              <span className="flex text-gold">
+                {[0, 1, 2, 3, 4].map((i) => <IconStar key={i} size={14} />)}
+              </span>
+              4.9 / 5
+            </span>
+            <span className="flex items-center gap-1.5">
+              <IconLock className="h-4 w-4 text-rose-600" /> OneID himoyasi
+            </span>
+            <span className="flex items-center gap-1.5">
+              <IconTruck className="h-4 w-4 text-rose-600" /> Bepul yetkazib berish
+            </span>
           </div>
         </div>
       </section>
@@ -106,19 +123,24 @@ export default function Home() {
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { i: "♾️", t: "Umrlik eksklyuzivlik", d: "Bir shaxs — bir uzuk." },
-              { i: "📜", t: "Raqamli passport", d: "Har uzukka noyob platformId." },
-              { i: "🛡️", t: "OneID ishonchi", d: "Faqat rasmiy ro'yxatdan o'tish." },
-              { i: "💎", t: "Sertifikatlangan olmoslar", d: "Xalqaro sifat kafolati." },
-            ].map((c, idx) => (
-              <Reveal key={idx} delay={idx * 90}>
-                <div className="glass h-full p-6">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-2xl">{c.i}</span>
-                  <h3 className="mt-4 text-xl text-onaccent">{c.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-onaccent/75">{c.d}</p>
-                </div>
-              </Reveal>
-            ))}
+              { i: "infinity", t: "Umrlik eksklyuzivlik", d: "Bir shaxs — bir uzuk." },
+              { i: "seal", t: "Raqamli passport", d: "Har uzukka noyob platformId." },
+              { i: "shield", t: "OneID ishonchi", d: "Faqat rasmiy ro'yxatdan o'tish." },
+              { i: "diamond", t: "Sertifikatlangan olmoslar", d: "Xalqaro sifat kafolati." },
+            ].map((c, idx) => {
+              const Ic = WHY_ICONS[c.i];
+              return (
+                <Reveal key={idx} delay={idx * 90}>
+                  <div className="glass h-full p-6">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-gold-soft">
+                      <Ic className="h-6 w-6" />
+                    </span>
+                    <h3 className="mt-4 text-xl text-onaccent">{c.t}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-onaccent/75">{c.d}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -180,7 +202,9 @@ export default function Home() {
               <details className="card group p-0">
                 <summary className="flex items-center justify-between gap-4 p-5">
                   <span className="text-base font-medium text-ink">{f.q}</span>
-                  <span className="faq-chev grid h-6 w-6 shrink-0 place-items-center rounded-full bg-rose-50 text-rose-600 transition-transform">+</span>
+                  <span className="faq-chev grid h-6 w-6 shrink-0 place-items-center rounded-full bg-rose-50 text-rose-600 transition-transform">
+                    <IconPlus size={13} />
+                  </span>
                 </summary>
                 <p className="px-5 pb-5 leading-relaxed text-ink-soft">{f.a}</p>
               </details>

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import RingCard from "../components/RingCard.jsx";
+import { IconSearch } from "../components/icons.jsx";
 import { RINGS, COLLECTIONS, METAL_LABELS, GEM_LABELS, formatSom } from "../data/rings.js";
 
 const SORTS = {
@@ -61,7 +62,9 @@ export default function Catalog() {
             placeholder="Uzuk nomi bo'yicha qidirish..."
             className="field pl-10"
           />
-          <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-soft">⌕</span>
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-soft">
+            <IconSearch size={18} />
+          </span>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Select value={collection} onChange={setCollection} label="To'plam"

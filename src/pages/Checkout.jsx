@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { orders } from "../api/client.js";
 import { getRing, METAL_LABELS, GEM_LABELS, formatSom, ringImage } from "../data/rings.js";
+import { IconRing, IconSparkle, IconInfo } from "../components/icons.jsx";
 
 export default function Checkout() {
   const { id } = useParams();
@@ -60,7 +61,9 @@ export default function Checkout() {
   if (!eligible && !done) {
     return (
       <div className="mx-auto max-w-lg px-5 py-24 text-center">
-        <div className="text-5xl">💍</div>
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+          <IconRing className="h-8 w-8" />
+        </div>
         <h1 className="mt-6 text-3xl text-ink">Siz yagonangizni topgansiz</h1>
         <p className="mt-4 text-ink-soft">
           {reason || "Yagona platformasida umrda faqat bir marta uzuk sotib olish mumkin."}
@@ -73,7 +76,9 @@ export default function Checkout() {
   if (done) {
     return (
       <div className="mx-auto max-w-lg px-5 py-20 text-center">
-        <div className="text-5xl">🎉</div>
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+          <IconSparkle className="h-8 w-8" />
+        </div>
         <h1 className="mt-6 text-3xl text-ink">Tabriklaymiz!</h1>
         <p className="mt-3 text-ink-soft">Uzugingiz buyurtma qilindi va sevgi passportingiz yaratildi.</p>
         <div className="mt-8 rounded-2xl border border-gold/40 bg-rose-50/50 p-6 text-left">
@@ -117,8 +122,8 @@ export default function Checkout() {
           <button type="submit" disabled={submitting} className="btn-primary mt-6 w-full py-3.5">
             {submitting ? "Tasdiqlanmoqda..." : `${formatSom(ring.price)} — Tasdiqlash`}
           </button>
-          <p className="mt-3 text-center text-xs text-ink-soft">
-            ⚠️ Tasdiqlangach o'zgartirib bo'lmaydi.
+          <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-ink-soft">
+            <IconInfo size={14} /> Tasdiqlangach o'zgartirib bo'lmaydi.
           </p>
         </form>
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { passport } from "../api/client.js";
+import { IconRing } from "../components/icons.jsx";
 
 export default function Passport() {
   const [id, setId] = useState("");
@@ -72,7 +73,7 @@ export function PassportCard({ data }) {
           <p className="text-xs tracking-[0.2em] uppercase opacity-80">Yagona · Sevgi passporti</p>
           <p className="mt-1 text-lg font-semibold">{data.platformId}</p>
         </div>
-        <div className="text-3xl">💍</div>
+        <IconRing className="h-8 w-8 text-gold-soft" />
       </div>
       <div className="grid gap-x-8 gap-y-4 px-7 py-7 sm:grid-cols-2">
         <Row label="Xaridor" value={data.buyer} />
