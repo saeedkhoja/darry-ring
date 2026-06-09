@@ -11,7 +11,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-rose-50 via-cream to-cream" />
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
           <div className="animate-fade-up">
-            <span className="inline-block rounded-full border border-gold/40 bg-white/60 px-4 py-1.5 text-xs tracking-[0.2em] text-rose-600 uppercase">
+            <span className="inline-block rounded-full border border-gold/40 bg-surface/60 px-4 py-1.5 text-xs tracking-[0.2em] text-rose-600 uppercase">
               Umrda bir marta
             </span>
             <h1 className="mt-6 text-4xl leading-[1.1] text-ink sm:text-5xl md:text-6xl">
@@ -46,7 +46,7 @@ export default function Home() {
               alt="Yagona uzuk"
               className="aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-2xl shadow-rose-900/20 ring-1 ring-rose-100"
             />
-            <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-white px-5 py-3 shadow-xl ring-1 ring-rose-100 sm:block">
+            <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-surface px-5 py-3 shadow-xl ring-1 ring-rose-100 sm:block">
               <p className="text-xs text-ink-soft">Umrda</p>
               <p className="text-lg font-bold text-rose-600">bir marta</p>
             </div>
@@ -55,7 +55,7 @@ export default function Home() {
       </section>
 
       {/* PROMISE STRIP */}
-      <section className="border-y border-rose-100 bg-white/50">
+      <section className="border-y border-rose-100 bg-surface/50">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
           {[
             { n: "01", t: "Bir hisob — bir uzuk", d: "OneID bilan tasdiqlangan har bir shaxs umrida faqat bitta uzuk sotib oladi." },
@@ -97,15 +97,13 @@ export default function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-5xl px-5 pb-8">
-        <div className="rounded-3xl bg-gradient-to-br from-ink to-rose-700 px-8 py-14 text-center text-cream">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-onyx to-rose-700 px-8 py-14 text-center text-onaccent">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold/20 blur-3xl" />
           <h2 className="text-3xl sm:text-4xl">Sevgingiz yagona. Uzugingiz ham.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-cream/80">
+          <p className="mx-auto mt-4 max-w-xl text-onaccent/80">
             Bugun ro'yxatdan o'ting va umringizdagi yagona uzukni yagonangizga taqdim eting.
           </p>
-          <Link
-            to="/login"
-            className="mt-8 inline-block rounded-full bg-cream px-8 py-3 font-medium text-ink transition-transform hover:scale-[1.03]"
-          >
+          <Link to="/login" className="btn-gold mt-8">
             OneID bilan boshlash
           </Link>
         </div>

@@ -38,12 +38,12 @@ export default function Passport() {
           value={id}
           onChange={(e) => setId(e.target.value)}
           placeholder="Masalan: YGN-DEMO-0001"
-          className="flex-1 rounded-xl border border-rose-100 bg-white px-4 py-3 outline-none focus:border-rose-400"
+          className="field flex-1"
         />
         <button
           type="submit"
           disabled={loading || !id.trim()}
-          className="rounded-xl bg-ink px-7 py-3 text-cream transition-transform hover:scale-[1.02] disabled:opacity-60"
+          className="btn-ink px-7 py-3 disabled:opacity-60"
         >
           {loading ? "Tekshirilmoqda..." : "Tekshirish"}
         </button>
@@ -66,8 +66,8 @@ export default function Passport() {
 
 export function PassportCard({ data }) {
   return (
-    <div className="mt-10 overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-white to-rose-50/60 shadow-xl">
-      <div className="flex items-center justify-between bg-gradient-to-r from-ink to-rose-700 px-7 py-5 text-cream">
+    <div className="mt-10 overflow-hidden rounded-3xl border border-gold/40 bg-gradient-to-br from-surface to-rose-50/60 shadow-xl">
+      <div className="flex items-center justify-between bg-gradient-to-r from-onyx to-rose-700 px-7 py-5 text-onaccent">
         <div>
           <p className="text-xs tracking-[0.2em] uppercase opacity-80">Yagona · Sevgi passporti</p>
           <p className="mt-1 text-lg font-semibold">{data.platformId}</p>

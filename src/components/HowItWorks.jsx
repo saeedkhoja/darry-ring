@@ -106,15 +106,15 @@ function Step({ step, index }) {
 function Card({ step, alignRight }) {
   if (step.tone === "highlight") {
     return (
-      <div className="rounded-2xl bg-gradient-to-br from-rose-700 to-ink p-7 text-cream shadow-2xl shadow-rose-900/30">
+      <div className="rounded-2xl bg-gradient-to-br from-rose-700 to-onyx p-7 text-onaccent shadow-2xl shadow-rose-900/30">
         <div className={`mb-3 flex items-center gap-3 ${alignRight ? "md:flex-row-reverse" : ""}`}>
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-2xl">
             {step.icon}
           </span>
           <span className="chip bg-gold text-ink">Eng muhim qadam</span>
         </div>
-        <h3 className="text-2xl text-cream">{step.title}</h3>
-        <p className="mt-2 leading-relaxed text-cream/85">{step.text}</p>
+        <h3 className="text-2xl text-onaccent">{step.title}</h3>
+        <p className="mt-2 leading-relaxed text-onaccent/85">{step.text}</p>
         <p className={`mt-4 text-sm font-semibold text-gold-soft ${alignRight ? "md:text-right" : ""}`}>
           ⚠️ Boshqa hech qachon — bu chinakam yagona.
         </p>
@@ -124,8 +124,8 @@ function Card({ step, alignRight }) {
 
   if (step.tone === "passport") {
     return (
-      <div className="overflow-hidden rounded-2xl border border-gold/40 bg-white shadow-lg">
-        <div className={`flex items-center gap-3 bg-gradient-to-r from-ink to-rose-700 px-6 py-4 text-cream ${alignRight ? "md:flex-row-reverse md:text-right" : ""}`}>
+      <div className="overflow-hidden rounded-2xl border border-gold/40 bg-surface shadow-lg">
+        <div className={`flex items-center gap-3 bg-gradient-to-r from-onyx to-rose-700 px-6 py-4 text-onaccent ${alignRight ? "md:flex-row-reverse md:text-right" : ""}`}>
           <span className="text-2xl">{step.icon}</span>
           <div className={alignRight ? "md:ml-auto" : ""}>
             <p className="text-[0.6rem] uppercase tracking-[0.2em] opacity-80">Yagona · Sevgi passporti</p>
@@ -142,7 +142,7 @@ function Card({ step, alignRight }) {
 
   // soft (default)
   return (
-    <div className="rounded-2xl border border-rose-100 bg-white p-7 shadow-sm">
+    <div className="card p-7">
       <span
         className={`mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-rose-50 text-2xl ${
           alignRight ? "md:ml-auto" : ""

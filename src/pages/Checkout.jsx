@@ -95,7 +95,7 @@ export default function Checkout() {
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
         {/* Form */}
-        <form onSubmit={handleBuy} className="rounded-2xl border border-rose-100 bg-white/70 p-6">
+        <form onSubmit={handleBuy} className="rounded-2xl border border-rose-100 bg-surface/70 p-6">
           <h2 className="text-xl text-ink">Sevgi passporti ma'lumotlari</h2>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <label className="block">
@@ -123,7 +123,7 @@ export default function Checkout() {
         </form>
 
         {/* Order summary */}
-        <aside className="h-fit rounded-2xl border border-rose-100 bg-white/70 p-6">
+        <aside className="h-fit rounded-2xl border border-rose-100 bg-surface/70 p-6">
           <h2 className="text-lg text-ink">Buyurtma</h2>
           <div className="mt-4 flex gap-4">
             <img

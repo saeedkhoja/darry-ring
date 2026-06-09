@@ -37,7 +37,7 @@ export default function Login() {
         Yagonaga ro'yxatdan o'tish faqat rasmiy <strong>OneID</strong> orqali amalga oshiriladi.
       </p>
 
-      <div className="mt-10 w-full rounded-2xl border border-rose-100 bg-white/70 p-7 shadow-sm">
+      <div className="mt-10 w-full rounded-2xl border border-rose-100 bg-surface/70 p-7 shadow-sm">
         {/* Haqiqiy OneID tugmasi — backend redirectiga ulanadi */}
         <button
           onClick={handleOneId}
@@ -70,7 +70,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-rose-600 px-5 py-3 text-cream transition-transform hover:scale-[1.02] disabled:opacity-60"
+            className="btn-primary w-full py-3"
           >
             Demo sifatida kirish
           </button>
@@ -94,7 +94,7 @@ function Field({ label, value, onChange, type = "text", placeholder }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-rose-100 bg-white px-3.5 py-2.5 text-ink outline-none transition-colors focus:border-rose-400"
+        className="field"
       />
     </label>
   );

@@ -17,6 +17,16 @@
     />
   </head>
   <body>
+    <script>
+      // Flashni oldini olish: React'dan oldin mavzuni o'rnatamiz
+      (function () {
+        try {
+          var s = localStorage.getItem("yagona_theme");
+          var t = s || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

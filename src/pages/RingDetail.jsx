@@ -62,7 +62,7 @@ export default function RingDetail() {
           <p className="mt-6 text-3xl font-semibold text-ink">{formatSom(ring.price)}</p>
           <p className="mt-1 text-sm text-ink-soft">Soliqlar kiritilgan · Bepul yetkazib berish</p>
 
-          <div className="mt-7 grid grid-cols-2 gap-4 rounded-2xl border border-rose-100 bg-white/60 p-5">
+          <div className="mt-7 grid grid-cols-2 gap-4 rounded-2xl border border-rose-100 bg-surface/60 p-5">
             <Spec label="Metall" value={METAL_LABELS[ring.metal]} />
             <Spec label="Asosiy tosh" value={GEM_LABELS[ring.gem]} />
             <Spec label="Kesim" value={ring.cutLabel} />

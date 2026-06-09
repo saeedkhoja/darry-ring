@@ -21,7 +21,7 @@ export default function Profile() {
       <h1 className="text-4xl text-ink">Mening profilim</h1>
       <div className="gold-divider mt-5 w-24" />
 
-      <div className="mt-8 rounded-2xl border border-rose-100 bg-white/70 p-6">
+      <div className="mt-8 rounded-2xl border border-rose-100 bg-surface/70 p-6">
         <h2 className="text-lg text-ink">OneID ma'lumotlari</h2>
         <div className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
           <Info label="F.I.Sh" value={user.fullName} />
@@ -31,14 +31,14 @@ export default function Profile() {
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-rose-100 bg-white/70 p-6">
+      <div className="mt-6 rounded-2xl border border-rose-100 bg-surface/70 p-6">
         <h2 className="text-lg text-ink">Xarid huquqi</h2>
         {eligible === null ? (
           <p className="mt-2 text-sm text-ink-soft">Tekshirilmoqda...</p>
         ) : eligible ? (
           <div className="mt-3 flex items-center justify-between">
             <p className="text-ink-soft">Sizda <strong className="text-rose-600">yagona</strong> uzuk olish huquqi mavjud.</p>
-            <Link to="/catalog" className="rounded-full bg-rose-600 px-5 py-2 text-sm text-cream">
+            <Link to="/catalog" className="btn-primary px-5 py-2 text-sm">
               Uzuk tanlash
             </Link>
           </div>

@@ -53,7 +53,7 @@ export default function Catalog() {
       </div>
 
       {/* Toolbar */}
-      <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-rose-100 bg-white/70 p-4 lg:flex-row lg:items-center">
+      <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-rose-100 bg-surface/70 p-4 lg:flex-row lg:items-center">
         <div className="relative flex-1">
           <input
             value={q}
@@ -101,7 +101,7 @@ function Select({ value, onChange, label, options }) {
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="field cursor-pointer appearance-none bg-white"
+        className="field cursor-pointer appearance-none"
       >
         {options.map(([v, l]) => (
           <option key={v} value={v}>{l}</option>
