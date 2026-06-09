@@ -24,25 +24,25 @@
   --color-onyx: var(--c-onyx);      /* to'q dekorativ yuzalar */
 }
 
-/* ---------- LIGHT (premium ivory) ---------- */
+/* ---------- LIGHT (premium · delicate porcelain & champagne) ---------- */
 :root {
-  --c-bg: #f4efe9;
-  --c-surface: #ffffff;
-  --c-text: #1b1410;
-  --c-muted: #6a5d54;
-  --c-onaccent: #fbf6f1;
-  --c-onyx: #1a1310;
-  --c-rose-50: #f8eef0;
-  --c-rose-100: #f0dde1;
-  --c-rose-200: #e3c2c9;
-  --c-rose-300: #cf96a2;
-  --c-rose-400: #b46577;
-  --c-rose-500: #9c3f56;
-  --c-rose-600: #862844;
-  --c-rose-700: #631a31;
-  --c-gold: #9c7b2e;
-  --c-gold-soft: #cdae6e;
-  --shadow-color: 107 26 49;
+  --c-bg: #f7f3ee;          /* iliq chinni-fil suyagi */
+  --c-surface: #fffefc;     /* deyarli sof, iliq oq */
+  --c-text: #271d17;        /* chuqur espresso (sof qora emas — nozikroq) */
+  --c-muted: #80736a;       /* yumshoq tau matn */
+  --c-onaccent: #fdf9f4;
+  --c-onyx: #1d1611;
+  --c-rose-50: #faf2f1;     /* eng yengil blush */
+  --c-rose-100: #efe6e2;    /* ipdek ingichka iliq greige chegara */
+  --c-rose-200: #e6d3d2;
+  --c-rose-300: #d4abae;
+  --c-rose-400: #c0848c;
+  --c-rose-500: #aa5e6e;
+  --c-rose-600: #97324c;    /* nafis bordo aksent */
+  --c-rose-700: #6f2236;
+  --c-gold: #b08a4a;        /* antiqa shampan oltin */
+  --c-gold-soft: #e0c896;
+  --shadow-color: 74 50 40; /* iliq jigarrang soya (qattiq emas) */
   color-scheme: light;
 }
 
@@ -75,16 +75,27 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--c-bg);
+  font-weight: 350;
+  letter-spacing: 0.005em;
+  background-color: var(--c-bg);
   color: var(--c-text);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Nozik premium chuqurlik — faqat light rejimda yumshoq blush nur */
+html:not([data-theme="dark"]) body {
+  background-image:
+    radial-gradient(60rem 40rem at 85% -8%, color-mix(in oklab, var(--c-rose-200) 45%, transparent), transparent 70%),
+    radial-gradient(50rem 36rem at 5% 0%, color-mix(in oklab, var(--c-gold-soft) 25%, transparent), transparent 65%);
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 
 /* Smooth theme transition for surfaces */
@@ -171,15 +182,17 @@ h1, h2, h3, h4 {
 .btn-gold:hover { transform: translateY(-2px); }
 
 .card {
-  border: 1px solid var(--c-rose-100);
+  border: 1px solid color-mix(in oklab, var(--c-rose-100) 80%, transparent);
   background: var(--c-surface);
-  border-radius: 1.1rem;
-  box-shadow: 0 1px 2px rgb(var(--shadow-color) / 0.05);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 1px rgb(var(--shadow-color) / 0.04),
+    0 8px 24px -18px rgb(var(--shadow-color) / 0.18);
 }
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 30px 55px -28px rgb(var(--shadow-color) / 0.5);
-  border-color: var(--c-rose-300);
+  transform: translateY(-6px);
+  box-shadow: 0 1px 1px rgb(var(--shadow-color) / 0.04),
+    0 36px 60px -30px rgb(var(--shadow-color) / 0.32);
+  border-color: color-mix(in oklab, var(--c-gold) 45%, var(--c-rose-200));
 }
 
 .chip {
