@@ -9,6 +9,7 @@ export default function Login() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [registered, setRegistered] = useState(false);
   const from = location.state?.from || "/catalog";
 
   // MOCK OneID oynasi maydonlari (backend ulanganda bu olib tashlanadi —
@@ -21,7 +22,7 @@ export default function Login() {
     setError(null);
     try {
       await loginWithOneId(form);
-      navigate(from, { replace: true });
+      setRegistered(true); // "tez kunda" offer ekranini ko'rsatamiz
     } catch (err) {
       setError(err.message || "Kirishda xatolik yuz berdi.");
     } finally {
@@ -29,15 +30,49 @@ export default function Login() {
     }
   }
 
+  // ===== Ro'yxatdan o'tgandan keyin — "Tez kunda" offeri =====
+  if (registered) {
+    return (
+      <div className="mx-auto flex max-w-md flex-col items-center px-5 py-20 text-center">
+        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-rose-50 text-4xl">
+          🎉
+        </span>
+        <span className="mt-6 chip bg-gold text-white">Tez kunda</span>
+        <h1 className="mt-4 text-3xl text-ink sm:text-4xl">Siz ro'yxatdan o'tdingiz!</h1>
+        <p className="mt-4 leading-relaxed text-ink-soft">
+          Yagona <strong className="text-ink">tez kunda ishga tushadi</strong>. Siz erta kirish
+          ro'yxatidasiz — birinchilardan bo'lib xabardor bo'lasiz.
+        </p>
+
+        <div className="mt-8 w-full rounded-2xl border border-gold/40 bg-surface/70 p-6 text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-rose-600">
+            Erta kirish sovg'asi
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            🎁 Ishga tushganda birinchi xaridingizga maxsus taklif va shaxsiy maslahatchi.
+          </p>
+        </div>
+
+        <button onClick={() => navigate("/catalog")} className="btn-primary mt-8 w-full py-3">
+          Uzuklar bilan tanishish
+        </button>
+        <button onClick={() => navigate("/")} className="mt-3 text-sm text-ink-soft hover:text-rose-600">
+          Bosh sahifaga qaytish
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto flex max-w-md flex-col items-center px-5 py-20">
       <Logo size={48} />
-      <h1 className="mt-8 text-center text-3xl text-ink">OneID bilan kirish</h1>
+      <span className="mt-6 chip bg-gold text-white">Tez kunda ishga tushamiz</span>
+      <h1 className="mt-4 text-center text-3xl text-ink">OneID bilan ro'yxatdan o'ting</h1>
       <p className="mt-3 text-center text-ink-soft">
-        Yagonaga ro'yxatdan o'tish faqat rasmiy <strong>OneID</strong> orqali amalga oshiriladi.
+        Erta kirish ro'yxatiga qo'shiling — birinchilardan bo'ling.
       </p>
 
-      <div className="mt-10 w-full rounded-2xl border border-rose-100 bg-surface/70 p-7 shadow-sm">
+      <div className="mt-8 w-full rounded-2xl border border-rose-100 bg-surface/70 p-7 shadow-sm">
         {/* Haqiqiy OneID tugmasi — backend redirectiga ulanadi */}
         <button
           onClick={handleOneId}

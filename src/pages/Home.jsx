@@ -1,112 +1,209 @@
 import { Link } from "react-router-dom";
 import RingCard from "../components/RingCard.jsx";
 import HowItWorks from "../components/HowItWorks.jsx";
-import { RINGS, ringImage } from "../data/rings.js";
+import RingShowcase from "../components/RingShowcase.jsx";
+import Reveal from "../components/Reveal.jsx";
+import { RINGS } from "../data/rings.js";
 
 export default function Home() {
+  const featured = RINGS.filter((r) => r.bestseller).slice(0, 4);
+
   return (
     <div>
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-rose-50 via-cream to-cream" />
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
-          <div className="animate-fade-up">
-            <span className="inline-block rounded-full border border-gold/40 bg-surface/60 px-4 py-1.5 text-xs tracking-[0.2em] text-rose-600 uppercase">
+      {/* ===================== HERO ===================== */}
+      <section className="aurora">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-20 pt-14 md:grid-cols-2 md:pb-28 md:pt-20">
+          <div>
+            <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-gold/40 bg-surface/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-rose-600 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               Umrda bir marta
             </span>
-            <h1 className="mt-6 text-4xl leading-[1.1] text-ink sm:text-5xl md:text-6xl">
+
+            <h1 className="animate-fade-up mt-6 text-5xl leading-[1.05] text-ink sm:text-6xl md:text-7xl" style={{ animationDelay: "0.08s" }}>
               Yagonangizga,
               <br />
               <span className="text-shimmer">faqat bir marta.</span>
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink-soft">
-              Yagona — har bir insonga umri davomida atigi bitta uzuk taqdim etadi.
-              Chunki haqiqiy sevgi ham yagona bo'ladi. OneID orqali ro'yxatdan o'ting
-              va o'z va'dangizni abadiy muhrlang.
+
+            <p className="animate-fade-up mt-6 max-w-sm text-lg leading-relaxed text-ink-soft" style={{ animationDelay: "0.16s" }}>
+              Bir umrda <strong className="text-ink">bitta</strong> uzuk. Bitta va'da. Yagonangizga.
             </p>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Link to="/catalog" className="btn-primary">
+
+            <div className="animate-fade-up mt-9 flex flex-wrap items-center gap-4" style={{ animationDelay: "0.24s" }}>
+              <Link to="/catalog" className="btn-primary px-8 py-3.5 text-base">
                 Uzuklarni ko'rish
               </Link>
-              <Link
-                to="/concept"
-                className="rounded-full border border-ink/15 px-7 py-3 text-ink transition-colors hover:border-rose-400 hover:text-rose-600"
-              >
-                Falsafamiz bilan tanishish
+              <Link to="/concept" className="btn-ink px-8 py-3.5 text-base">
+                Falsafamiz
               </Link>
             </div>
-            <p className="mt-6 text-sm text-ink-soft">
-              🔒 Faqat <strong className="text-ink">OneID</strong> orqali ro'yxatdan o'tish — ishonchli va rasmiy.
-            </p>
-          </div>
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-rose-200/40 blur-2xl" />
-            <img
-              src={ringImage("photo-1605100804763-247f67b3557e", 800)}
-              alt="Yagona uzuk"
-              className="aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-2xl shadow-rose-900/20 ring-1 ring-rose-100"
-            />
-            <div className="absolute -bottom-5 -left-5 hidden rounded-2xl bg-surface px-5 py-3 shadow-xl ring-1 ring-rose-100 sm:block">
-              <p className="text-xs text-ink-soft">Umrda</p>
-              <p className="text-lg font-bold text-rose-600">bir marta</p>
+
+            <div className="animate-fade-up mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-ink-soft" style={{ animationDelay: "0.32s" }}>
+              <span className="flex items-center gap-1.5">
+                <span className="text-gold">★★★★★</span> 4.9 / 5 baho
+              </span>
+              <span className="flex items-center gap-1.5">🔒 OneID himoyasi</span>
+              <span className="flex items-center gap-1.5">🚚 Bepul yetkazib berish</span>
             </div>
+          </div>
+
+          <div className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <RingShowcase />
           </div>
         </div>
       </section>
 
-      {/* PROMISE STRIP */}
-      <section className="border-y border-rose-100 bg-surface/50">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
+      {/* ===================== STAT BAND ===================== */}
+      <section className="band-dark">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-8 px-5 py-12 md:grid-cols-4">
           {[
-            { n: "01", t: "Bir hisob — bir uzuk", d: "OneID bilan tasdiqlangan har bir shaxs umrida faqat bitta uzuk sotib oladi." },
-            { n: "02", t: "Abadiy yozuv", d: "Har bir uzukka noyob platformId va raqamli sevgi passporti beriladi." },
-            { n: "03", t: "O'zbekiston uchun", d: "Mahalliy bozor, mahalliy qadriyatlar va OneID integratsiyasi bilan." },
-          ].map((c) => (
-            <div key={c.n}>
-              <span className="text-sm font-semibold text-gold">{c.n}</span>
-              <h3 className="mt-2 text-xl text-ink">{c.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{c.d}</p>
+            { v: "34+", l: "noyob uzuk modeli" },
+            { v: "1 umr", l: "= atigi 1 uzuk" },
+            { v: "100%", l: "OneID tasdiqi" },
+            { v: "16", l: "viloyatga yetkazib berish" },
+          ].map((s, i) => (
+            <Reveal key={i} delay={i * 90} className="text-center">
+              <p className="text-4xl font-semibold text-onaccent" style={{ fontFamily: "var(--font-serif)" }}>
+                {s.v}
+              </p>
+              <p className="mt-1 text-sm text-onaccent/70">{s.l}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ===================== FEATURED ===================== */}
+      <section className="section-tint">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal className="flex items-end justify-between">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">Tanlangan modellar</span>
+              <h2 className="mt-2 text-3xl text-ink sm:text-4xl md:text-5xl">Mashhur uzuklar</h2>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FEATURED RINGS */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="flex items-end justify-between">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">Tanlangan modellar</span>
-            <h2 className="mt-2 text-3xl text-ink sm:text-4xl">Mashhur uzuklar</h2>
+            <Link to="/catalog" className="hidden text-sm font-medium text-rose-600 hover:underline sm:block">
+              Barcha 34 ta modelni ko'rish →
+            </Link>
+          </Reveal>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {featured.map((r, i) => (
+              <Reveal key={r.id} delay={i * 80}>
+                <RingCard ring={r} />
+              </Reveal>
+            ))}
           </div>
-          <Link to="/catalog" className="hidden text-sm text-rose-600 hover:underline sm:block">
-            Barchasini ko'rish →
-          </Link>
-        </div>
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {RINGS.filter((r) => r.bestseller).slice(0, 4).map((r) => (
-            <RingCard key={r.id} ring={r} />
-          ))}
-        </div>
-        <div className="mt-8 text-center sm:hidden">
-          <Link to="/catalog" className="btn-ink">Barcha uzuklarni ko'rish</Link>
+          <div className="mt-8 text-center sm:hidden">
+            <Link to="/catalog" className="btn-ink">Barcha uzuklarni ko'rish</Link>
+          </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS — snake timeline */}
+      {/* ===================== WHY YAGONA (dark luxury) ===================== */}
+      <section className="band-dark">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-soft">Nega Yagona</span>
+            <h2 className="mt-3 text-3xl text-onaccent sm:text-4xl md:text-5xl">Lyuks emas — abadiy ma'no</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { i: "♾️", t: "Umrlik eksklyuzivlik", d: "Bir shaxs — bir uzuk." },
+              { i: "📜", t: "Raqamli passport", d: "Har uzukka noyob platformId." },
+              { i: "🛡️", t: "OneID ishonchi", d: "Faqat rasmiy ro'yxatdan o'tish." },
+              { i: "💎", t: "Sertifikatlangan olmoslar", d: "Xalqaro sifat kafolati." },
+            ].map((c, idx) => (
+              <Reveal key={idx} delay={idx * 90}>
+                <div className="glass h-full p-6">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-2xl">{c.i}</span>
+                  <h3 className="mt-4 text-xl text-onaccent">{c.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-onaccent/75">{c.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== HOW IT WORKS ===================== */}
       <HowItWorks />
 
-      {/* CTA */}
-      <section className="mx-auto max-w-5xl px-5 pb-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-onyx to-rose-700 px-8 py-14 text-center text-onaccent">
-          <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold/20 blur-3xl" />
-          <h2 className="text-3xl sm:text-4xl">Sevgingiz yagona. Uzugingiz ham.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-onaccent/80">
-            Bugun ro'yxatdan o'ting va umringizdagi yagona uzukni yagonangizga taqdim eting.
-          </p>
-          <Link to="/login" className="btn-gold mt-8">
-            OneID bilan boshlash
-          </Link>
+      {/* ===================== TESTIMONIALS ===================== */}
+      <section className="section-tint">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">Mijozlarimiz</span>
+            <h2 className="mt-3 text-3xl text-ink sm:text-4xl md:text-5xl">Sevgi tarixlari</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              { q: "Passportdagi ismimizni ko'rib, ko'zimga yosh keldi.", n: "Sardor & Malika", c: "Toshkent" },
+              { q: "«Umrda bir marta» — tanlovim qadrli ekanini his qildim.", n: "Jasur & Nigora", c: "Samarqand" },
+              { q: "OneID orqali hammasi 2 daqiqada bo'ldi.", n: "Aziz & Dilnoza", c: "Buxoro" },
+            ].map((t, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <figure className="card flex h-full flex-col p-7">
+                  <div className="text-3xl leading-none text-gold" style={{ fontFamily: "var(--font-serif)" }}>"</div>
+                  <blockquote className="mt-2 flex-1 text-lg leading-relaxed text-ink" style={{ fontFamily: "var(--font-serif)" }}>
+                    {t.q}
+                  </blockquote>
+                  <figcaption className="mt-5 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-rose-600 text-sm font-semibold text-onaccent">
+                      {t.n.charAt(0)}
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-ink">{t.n}</p>
+                      <p className="text-xs text-ink-soft">{t.c}</p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
         </div>
+      </section>
+
+      {/* ===================== FAQ ===================== */}
+      <section className="mx-auto max-w-3xl px-5 py-20">
+        <Reveal className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">Savol-javob</span>
+          <h2 className="mt-3 text-3xl text-ink sm:text-4xl md:text-5xl">Ko'p so'raladigan savollar</h2>
+        </Reveal>
+        <div className="mt-10 space-y-3">
+          {[
+            { q: "Nega faqat bir marta?", a: "Har bir OneID egasi umrida bitta uzuk oladi — bu va'dangiz qadrini oshiradi." },
+            { q: "Qanday ro'yxatdan o'tiladi?", a: "Faqat rasmiy OneID orqali — xavfsiz va ishonchli." },
+            { q: "platformId nima?", a: "Uzukingizning raqamli passporti — istalgan vaqtda tekshiriladi." },
+            { q: "Olmoslar sertifikatlanganmi?", a: "Ha, xalqaro 4C standarti bo'yicha." },
+            { q: "Yetkazib berish?", a: "16 viloyatga bepul, 1–4 ish kunida." },
+            { q: "To'lov?", a: "UZCARD/Humo, o'tkazma yoki bo'lib-bo'lib." },
+          ].map((f, i) => (
+            <Reveal key={i} delay={i * 50}>
+              <details className="card group p-0">
+                <summary className="flex items-center justify-between gap-4 p-5">
+                  <span className="text-base font-medium text-ink">{f.q}</span>
+                  <span className="faq-chev grid h-6 w-6 shrink-0 place-items-center rounded-full bg-rose-50 text-rose-600 transition-transform">+</span>
+                </summary>
+                <p className="px-5 pb-5 leading-relaxed text-ink-soft">{f.a}</p>
+              </details>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ===================== CTA ===================== */}
+      <section className="mx-auto max-w-5xl px-5 pb-16">
+        <Reveal>
+          <div className="band-dark relative overflow-hidden rounded-[2rem] px-8 py-16 text-center">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gold/25 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-rose-500/30 blur-3xl" />
+            <h2 className="relative text-3xl text-onaccent sm:text-4xl md:text-5xl">Sevgingiz yagona. Uzugingiz ham.</h2>
+            <p className="relative mx-auto mt-4 max-w-md text-onaccent/80">
+              Bugun boshlang — yagonangizga.
+            </p>
+            <Link to="/login" className="btn-gold relative mt-8">
+              OneID bilan boshlash
+            </Link>
+          </div>
+        </Reveal>
       </section>
     </div>
   );

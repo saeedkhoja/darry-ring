@@ -24,25 +24,26 @@
   --color-onyx: var(--c-onyx);      /* to'q dekorativ yuzalar */
 }
 
-/* ---------- LIGHT (premium · delicate porcelain & champagne) ---------- */
+/* ---------- LIGHT (premium · Deep Emerald & Champagne) ---------- */
 :root {
-  --c-bg: #f7f3ee;          /* iliq chinni-fil suyagi */
-  --c-surface: #fffefc;     /* deyarli sof, iliq oq */
-  --c-text: #271d17;        /* chuqur espresso (sof qora emas — nozikroq) */
-  --c-muted: #80736a;       /* yumshoq tau matn */
-  --c-onaccent: #fdf9f4;
-  --c-onyx: #1d1611;
-  --c-rose-50: #faf2f1;     /* eng yengil blush */
-  --c-rose-100: #efe6e2;    /* ipdek ingichka iliq greige chegara */
-  --c-rose-200: #e6d3d2;
-  --c-rose-300: #d4abae;
-  --c-rose-400: #c0848c;
-  --c-rose-500: #aa5e6e;
-  --c-rose-600: #97324c;    /* nafis bordo aksent */
-  --c-rose-700: #6f2236;
-  --c-gold: #b08a4a;        /* antiqa shampan oltin */
-  --c-gold-soft: #e0c896;
-  --shadow-color: 74 50 40; /* iliq jigarrang soya (qattiq emas) */
+  --c-bg: #e8e6db;          /* chuqurroq iliq stone — oppoq emas */
+  --c-surface: #fcfbf5;     /* yorqin yuza, fonga nisbatan ajralib turadi */
+  --c-text: #0f1c15;        /* deyarli qora-zumrad */
+  --c-muted: #515a52;       /* to'q, aniq o'qiladigan kulrang-yashil */
+  --c-onaccent: #f3f8f1;
+  --c-onyx: #0b1711;        /* chuqur zumrad-onyx */
+  /* "rose" tokeni = zumrad shkalasi */
+  --c-rose-50: #e4ede5;
+  --c-rose-100: #cfddd2;    /* aniqroq chegara */
+  --c-rose-200: #aecabb;
+  --c-rose-300: #7caa90;
+  --c-rose-400: #468560;
+  --c-rose-500: #1a6039;
+  --c-rose-600: #0a4628;    /* to'q, boy zumrad aksent */
+  --c-rose-700: #06311e;
+  --c-gold: #a67d31;        /* to'yingan shampan oltin */
+  --c-gold-soft: #d4b878;
+  --shadow-color: 12 36 25; /* chuqur zumrad soya */
   color-scheme: light;
 }
 
@@ -87,8 +88,9 @@ body {
 /* Nozik premium chuqurlik — faqat light rejimda yumshoq blush nur */
 html:not([data-theme="dark"]) body {
   background-image:
-    radial-gradient(60rem 40rem at 85% -8%, color-mix(in oklab, var(--c-rose-200) 45%, transparent), transparent 70%),
-    radial-gradient(50rem 36rem at 5% 0%, color-mix(in oklab, var(--c-gold-soft) 25%, transparent), transparent 65%);
+    radial-gradient(55rem 40rem at 88% -6%, color-mix(in oklab, var(--c-rose-300) 50%, transparent), transparent 60%),
+    radial-gradient(48rem 36rem at 2% 4%, color-mix(in oklab, var(--c-gold-soft) 45%, transparent), transparent 58%),
+    radial-gradient(60rem 50rem at 50% 120%, color-mix(in oklab, var(--c-rose-200) 55%, transparent), transparent 60%);
   background-attachment: fixed;
 }
 
@@ -133,6 +135,121 @@ h1, h2, h3, h4 {
 .gold-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--c-gold), transparent);
+}
+
+/* ============ Premium motion & decor ============ */
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes spinRev { to { transform: rotate(-360deg); } }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.55); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.9; }
+  100% { transform: translateY(-120px) translateX(14px); opacity: 0; }
+}
+@keyframes auroraMove {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(4%, 3%, 0) scale(1.08); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+@keyframes haloPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+.animate-spin-slow { animation: spinSlow 22s linear infinite; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Aurora / mesh hero background (rang boy — faqat oq emas) */
+.aurora { position: relative; isolation: isolate; overflow: hidden; }
+.aurora::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: -2;
+  background:
+    radial-gradient(38% 50% at 18% 22%, color-mix(in oklab, var(--c-rose-300) 55%, transparent), transparent 60%),
+    radial-gradient(42% 55% at 85% 18%, color-mix(in oklab, var(--c-gold-soft) 60%, transparent), transparent 62%),
+    radial-gradient(46% 60% at 75% 88%, color-mix(in oklab, var(--c-rose-500) 38%, transparent), transparent 60%),
+    radial-gradient(40% 50% at 12% 85%, color-mix(in oklab, var(--c-rose-200) 60%, transparent), transparent 60%);
+  filter: blur(8px) saturate(115%);
+  animation: auroraMove 18s ease-in-out infinite;
+}
+.aurora::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, transparent 60%, var(--c-bg) 100%);
+}
+
+/* Tinted section (boy fon — oppoq emas) */
+.section-tint {
+  background:
+    radial-gradient(60% 80% at 100% 0%, color-mix(in oklab, var(--c-rose-100) 70%, transparent), transparent 60%),
+    radial-gradient(50% 70% at 0% 100%, color-mix(in oklab, var(--c-gold-soft) 30%, transparent), transparent 55%),
+    var(--c-bg);
+}
+
+/* Dark luxury band */
+.band-dark {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(50% 70% at 80% 10%, color-mix(in oklab, var(--c-rose-600) 55%, transparent), transparent 60%),
+    linear-gradient(160deg, var(--c-onyx), color-mix(in oklab, var(--c-rose-700) 65%, var(--c-onyx)));
+  color: var(--c-onaccent);
+}
+
+/* Glass card */
+.glass {
+  background: color-mix(in oklab, var(--c-surface) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--c-gold) 28%, transparent);
+  backdrop-filter: blur(10px);
+  border-radius: 1.25rem;
+}
+
+/* Sparkle dot */
+.sparkle {
+  position: absolute;
+  color: var(--c-gold);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--c-gold) 70%, transparent));
+  animation: twinkle 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Floating particle */
+.particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #fff, var(--c-gold));
+  box-shadow: 0 0 10px color-mix(in oklab, var(--c-gold) 70%, transparent);
+  animation: drift linear infinite;
+  pointer-events: none;
+}
+
+/* Accordion chevron */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-chev { transform: rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .aurora::before, .sparkle, .particle, .animate-spin-slow,
+  .animate-floaty, .animate-fade-up { animation: none !important; }
 }
 
 /* ---------- UI primitives ---------- */
